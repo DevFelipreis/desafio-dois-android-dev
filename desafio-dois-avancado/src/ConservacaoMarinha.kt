@@ -31,6 +31,7 @@ class ReservaMarinha(
     override fun exibirInformacoes(): String {
         calcularEficienciaConservacao()
 
+        val numeroFormatado = String.format("%.2f", eficiencia)
         val monitoramento: String = if (possuiProgramaMonitoramento) "SIM" else "NÃO"
 
         return """
@@ -38,7 +39,8 @@ class ReservaMarinha(
             Área Protegida: $areaProtegidaEmKm2 km²
             Possui Programa de Monitoramento: $monitoramento
             Tipo de Reserva: $tipoReserva
-            Eficiência de Conservação: $eficiencia
+            Eficiência de Conservação: $numeroFormatado
         """.trimIndent()
     }
 }
+
