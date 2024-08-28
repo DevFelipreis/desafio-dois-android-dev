@@ -22,10 +22,28 @@ class ReservaMarinha(
         eficiencia = if (possuiProgramaMonitoramento) {
             areaProtegidaEmKm2 * 0.9
         } else {
-            areaProtegidaEmKm2 * 0.5
+            areaProtegidaEmKm2 - areaProtegidaEmKm2 * 0.5
+        }
+
+        when(tipoReserva){
+            "Estações Ecológicas" -> eficiencia+=10
+            "Reservas Biológicas" -> eficiencia+=20
+            "Parques Nacionais"   -> eficiencia+=20
+            "Monumentos Naturais" -> eficiencia+=5
+            "Refúgios da Vida Silvestre" -> eficiencia+=2
+            else -> eficiencia++
+        }
+
+        when(tipoAmbiente){
+            "Zona Litorânea" -> eficiencia+=4.0
+            "Zona Nerítica" -> eficiencia+=2.9
+            "Zona Abatial"   -> eficiencia+=3.7
+            "Zona Abissal" -> eficiencia+=6.8
+            else -> eficiencia+=2
         }
 
         return this
+
     }
 
     override fun exibirInformacoes(): String {
