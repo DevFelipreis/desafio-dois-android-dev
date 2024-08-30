@@ -1,3 +1,7 @@
-fun main(){
-    println("Hello World")
+import EntradaInformacoes.entradaInformacoes
+
+fun main() {
+
+   entradaInformacoes()
+
 }
