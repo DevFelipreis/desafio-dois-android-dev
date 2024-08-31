@@ -80,3 +80,14 @@ fun main() {
     // Exibe os detalhes da reserva marinha
     reservaMarinha.mostrarDetalhes()
 }
+
+/*Enumerados (ok)
+Comando latenit(ok)
+comando with(ok)
+data class(ok)
+herança e modificadores(acho que deu certo)
+
+Verificar so esse sobre herança e modificadores, não sei se consegui usar como era pra ser.
+Criar o input das demais entradas, pro ser possível digitar e ter o resultado.
+Fiz so um que foi correspondente ao tipo de reserva marinha, e ai vc escolhe o número e é feito o resultado
+ */
