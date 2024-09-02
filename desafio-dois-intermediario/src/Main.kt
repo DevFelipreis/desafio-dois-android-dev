@@ -57,8 +57,8 @@ fun main() {
     val scanner = Scanner(System.`in`)
 
     println("Qual o tipo de ambiente?")
-    for(p in TipoAmbiente.values()){
-        println("$p")
+    TipoAmbiente.values().forEachIndexed{index, tipoAmbiente ->
+        println("${index + 1}° $tipoAmbiente")
     }
     print("\n")
 
