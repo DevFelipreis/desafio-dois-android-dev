@@ -1,6 +1,5 @@
 import java.util.Scanner
 
-// Enumeração para os tipos de ambiente marinho
 enum class TipoAmbiente {
     LITORANEA,
     NERITICA,
@@ -27,14 +26,12 @@ open class ConservacaoMarinha(
     }
 }
 
-// Subclasse para Reserva Marinha
 class ReservaMarinha(
     tipoAmbiente: TipoAmbiente,
     areaProtegidaEmKm2: Double,
     possuirProgramaMonitoramento: Boolean
 ) : ConservacaoMarinha(tipoAmbiente, areaProtegidaEmKm2, possuirProgramaMonitoramento) {
 
-    // lateinit para a variável tipoReserva
     lateinit var tipoReserva: String
 
     fun definirTipoReserva(opcao: Int) {
@@ -59,8 +56,13 @@ class ReservaMarinha(
 fun main() {
     val scanner = Scanner(System.`in`)
 
-    println("Qual o tipo da reserva marinha?")
+    println("Qual o tipo de ambiente?")
+    for(p in TipoAmbiente.values()){
+        println("$p")
+    }
+    print("\n")
 
+    println("Qual o tipo da reserva marinha?")
     println("1. Estações Ecológicas")
     println("2. Reservas Biológicas")
     println("3. Parques Nacionais")
@@ -70,9 +72,16 @@ fun main() {
 
     val opcao = scanner.nextInt()
 
-    val reservaMarinha = ReservaMarinha(
-        TipoAmbiente.LITORANEA, 500.0, true
-    )
+    print("Qual o tamanho da área protegida? ")
+    val areaProtegida = readLine()?.toDoubleOrNull() ?: 0.0
+
+    print("\n")
+
+    print("O local possui programa de monitoramento ? (S/N)")
+    val possuiMonitoramento = readLine()?.lowercase()
+    val isValidMonitoramento = possuiMonitoramento == "s"
+
+    val reservaMarinha = ReservaMarinha(TipoAmbiente.LITORANEA, areaProtegida, isValidMonitoramento)
 
     // Define o tipo de reserva com base na escolha do usuário
     reservaMarinha.definirTipoReserva(opcao)
@@ -80,14 +89,3 @@ fun main() {
     // Exibe os detalhes da reserva marinha
     reservaMarinha.mostrarDetalhes()
 }
-
-/*Enumerados (ok)
-Comando latenit(ok)
-comando with(ok)
-data class(ok)
-herança e modificadores(acho que deu certo)
-
-Verificar so esse sobre herança e modificadores, não sei se consegui usar como era pra ser.
-Criar o input das demais entradas, pro ser possível digitar e ter o resultado.
-Fiz so um que foi correspondente ao tipo de reserva marinha, e ai vc escolhe o número e é feito o resultado
- */
