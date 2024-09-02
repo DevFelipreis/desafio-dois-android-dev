@@ -16,7 +16,8 @@ class ConservacaoMarinha(
         print("\n")
         println("Tipo de Ambiente: $tipoAmbiente")
         println("Área Protegida: $areaProtegidaEmKm2 km²")
-        println("Possui Monitoramento: $possuiProgramaMonitoramento")
+       val possuiProgramaMonitoramentoSimOuNao = if(possuiProgramaMonitoramento) "SIM" else "NÃO"
+        println("Possui Monitoramento: $possuiProgramaMonitoramentoSimOuNao")
     }
 
     constructor(tipoAmbiente: String) : this(tipoAmbiente, 200.0,false) {
