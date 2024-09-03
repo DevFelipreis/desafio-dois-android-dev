@@ -4,7 +4,7 @@ enum class TipoAmbiente {
     LITORANEA,
     NERITICA,
     ABATIAL,
-    ABISSAL
+    ABISSAL,
 }
 
 // Classe base para conservação marinha
@@ -23,6 +23,20 @@ open class ConservacaoMarinha(
 
     open fun mostrarDetalhes() {
         println(detalhes)
+    }
+
+    companion object{
+        fun escolherTipoAmbiente(): TipoAmbiente{
+            val scanner = Scanner(System.`in`)
+            println("Qual o tipo de ambiente?")
+            TipoAmbiente.values().forEachIndexed { index, tipoAmbiente ->
+                println("${index + 1}. $tipoAmbiente")
+            }
+            print("Escolha uma das opções: ")
+            val opcao = scanner.nextInt()
+
+            return TipoAmbiente.values().getOrNull(opcao - 1)?:TipoAmbiente.LITORANEA
+        }
     }
 }
 
@@ -55,6 +69,7 @@ class ReservaMarinha(
 
 fun main() {
     val scanner = Scanner(System.`in`)
+    val tipoAmbienteEscolhido = ConservacaoMarinha.escolherTipoAmbiente()
 
     println("Qual o tipo de ambiente?")
     TipoAmbiente.values().forEachIndexed{index, tipoAmbiente ->
@@ -81,11 +96,17 @@ fun main() {
     val possuiMonitoramento = readLine()?.lowercase()
     val isValidMonitoramento = possuiMonitoramento == "s"
 
-    val reservaMarinha = ReservaMarinha(TipoAmbiente.LITORANEA, areaProtegida, isValidMonitoramento)
+    val reservaMarinha = ReservaMarinha(tipoAmbienteEscolhido, areaProtegida, isValidMonitoramento)
+
 
     // Define o tipo de reserva com base na escolha do usuário
     reservaMarinha.definirTipoReserva(opcao)
 
     // Exibe os detalhes da reserva marinha
     reservaMarinha.mostrarDetalhes()
+
 }
+
+
+}
+
